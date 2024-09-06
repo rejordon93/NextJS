@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                      Int      @id @default(autoincrement())
+  username                String   @unique
+  email                   String   @unique
+  password                String   // Note: Use `@required` in your application logic, not in Prisma schema
+  isVerified              Boolean  @default(false)
+  isAdmin                 Boolean  @default(false)
+  forgotPasswordToken     String?  // Optional field, may be null if not used
+  forgotPasswordTokenExpiry DateTime? // Optional field, may be null if not used
+  verifyToken             String?  // Optional field, may be null if not used
+  verifyTokenExpiry       DateTime? // Optional field, may be null if not used
+}
