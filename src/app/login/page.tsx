@@ -19,6 +19,7 @@ export default function LoginPage() {
     try {
       setLoading(true);
       const response = await axios.post("/api/users/login", user);
+      console.log("Login success", response.data);
       console.log(response);
       toast.success("Login success");
       router.push("/profile");
@@ -41,7 +42,6 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <h1>{loading ? "Processing" : "login"}</h1>
-
       <label htmlFor="email">email</label>
       <input
         className="p-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-gray-600"
@@ -67,7 +67,6 @@ export default function LoginPage() {
       >
         {loading ? "Login..." : "Login Here"}
       </button>
-
       <Link href="/signup">Visit SignUp page</Link>
     </div>
   );

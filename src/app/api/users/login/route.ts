@@ -3,6 +3,12 @@ import prisma from "@/database/prisma";
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+type tokeDataType = {
+  id: number;
+  username: string;
+  email: string;
+};
+
 export async function POST(request: NextRequest) {
   try {
     const reqBody = await request.json();
@@ -27,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     //create toke data
-    const tokenData = {
+    const tokenData: tokeDataType = {
       id: user.id,
       username: user.username,
       email: user.email,
